@@ -9,7 +9,7 @@
     <div class="container">
 
     @if(session('success'))
-        <div class="alert alert-success">
+        <div class="alert" style="background-color: #ffe0ec; border: 1px solid #ff8fb3; color: #d94f83; border-radius: 12px;">
             {{ session('success') }}
         </div>
     @endif

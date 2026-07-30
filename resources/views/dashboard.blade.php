@@ -6,6 +6,19 @@
 
 @include('layouts.navbar')
 
+<div style="
+    background-image: url('{{ asset('images/pink2.jpg') }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    ">
+
     <div class="text-center">
         <h1>
             Ringkasan Hari Ini

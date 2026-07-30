@@ -30,8 +30,4 @@ class Produk extends Model
         return $this->hasMany(ItemPenjualan::class, 'produk_id');
     }
 
-    public function jenis()
-    {
-        return $this->belongsTo(Jenis::class, 'jenis_id');
-    }
 }
