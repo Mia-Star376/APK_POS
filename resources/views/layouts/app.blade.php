@@ -6,7 +6,14 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <div class="container">
+
+<style>
+        body {
+            background-color: #fdeef3;
+        }
+    </style>
+
+    <div class="container-fluid px-0">
 
     @if(session('success'))
         <div class="alert" style="background-color: #ffe0ec; border: 1px solid #ff8fb3; color: #d94f83; border-radius: 12px;">

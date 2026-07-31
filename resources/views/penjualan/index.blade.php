@@ -6,79 +6,89 @@
 
 @include('layouts.navbar')
 
-@if(session('errors'))
-    <div class="alert alert-danger">
-        {{ session('errors') }}
-    </div>
-@endif
+    <div class="container-fluid py-4 px-4">
 
-    <h1>Halaman Penjualan</h1>
+        <h4 class="mb-5 text-center">Halaman Penjualan</h4>
 
-    <a href="{{ route('penjualan.create') }}" class="btn btn-primary mb-3">Create</a>
+        @if(session('errors'))
+            <div class="alert alert-danger">
+                {{ session('errors') }}
+            </div>
+        @endif
 
-    <form action="{{ route('penjualan.index') }}" method="GET" class="mb-3">
-        <div class="input-group">
-            <input type="text" name="search" value="{{ request()->search }}" class="form-control"
-                placeholder="Search penjualan">
-            <button class="btn btn-outline-secondary" type="submit">
-                Search
-            </button>
+        <div class="border rounded p-4 bg-white">
+
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                <a href="{{ route('penjualan.create') }}" class="btn btn-sm" style="background-color: #ff8fb3; border-color: #ff8fb3; color: #fff;">Create</a>
+
+                <form action="{{ route('penjualan.index') }}" method="GET" class="d-flex" style="max-width: 350px; width: 100%;">
+                    <input
+                        type="text"
+                        name="search"
+                        value="{{ request()->search }}"
+                        class="form-control form-control-sm"
+                        placeholder="Search penjualan">
+                    <button class="btn btn-outline-secondary btn-sm ms-2" type="submit">
+                        Search
+                    </button>
+                </form>
+            </div>
+
+            <div class="rounded-3 overflow-hidden border">
+                <table class="table table-sm table-bordered mb-0 align-middle">
+                    <thead>
+                        <tr class="text-muted">
+                            <th scope="col">#</th>
+                            <th scope="col">Tanggal Transaksi</th>
+                            <th scope="col">Kasir</th>
+                            <th scope="col">Total Pembayaran</th>
+                            <th scope="col">Metode Pembayaran</th>
+                            <th scope="col">Status</th>
+                            <th scope="col" class="text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($sales as $sale)
+                        <tr>
+                            <td>{{ $sales->firstItem() + $loop->index }}</td>
+                            <td>{{ $sale->created_at->translatedFormat('d-m-Y H:i:s') }}</td>
+                            <td>{{ $sale->user->name }}</td>
+                            <td>Rp.{{ number_format($sale->total_pembayaran) }}</td>
+                            <td>{{ $sale->metode_pembayaran }}</td>
+                            <td>{{ $sale->status }}</td>
+                            <td class="text-center">
+                                <a href="" class="btn btn-sm" style="background-color: #ff8fb3; border-color: #ff8fb3; color: #fff;">Detail</a>
+                                @can('view', $sale)
+                                <a href="{{ route('penjualan.edit', $sale) }}" class="btn btn-sm btn-warning">Edit</a>
+                                @endcan
+                                @can('delete', $sale)
+                                <form action="{{ route('penjualan.destroy', $sale->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-pink" onclick="return confirm('Apakah anda yakin akan menghapus penjualan ini?')">
+                                        Hapus
+                                    </button>
+                                </form>
+                                @endcan
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="7" class="text-muted text-center small">
+                                Data tidak ditemukan.
+                            </td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-3">
+                {{ $sales->links() }}
+            </div>
+
         </div>
-    </form>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Tanggal Transaksi</th>
-                <th scope="col">Kasir</th>
-                <th scope="col">Total Pembayaran</th>
-                <th scope="col">Metode Pembayaran</th>
-                <th scope="col">Status</th>
-                <th scope="col">Aksi</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @forelse($sales as $sale)
-                <tr>
-                    <th scope="row">{{ $sales->firstItem() + $loop->index }}</th>
-                    <td>{{ $sale->created_at->translatedFormat('d-m-Y H:i:s') }}</td>
-                    <td>{{ $sale->user->name }}</td>
-                    <td>Rp.{{number_format ($sale->total_pembayaran) }}</td>
-                    <td>{{ $sale->metode_pembayaran }}</td>
-                    <td>{{ $sale->status }}</td>
-
-                    <td class="d-flex gap-1">
-                        <a href="" class="btn btn-primary">Detail</a>
-                          @can('view', $sale)
-                          ||
-                        <a href="{{ route('penjualan.edit', $sale) }}" class="btn btn-warning">Edit</a>
-                          @endcan
-                          @can('delete', $sale)
-                        <form action="{{ route('penjualan.destroy', $sale->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-
-                            <button class="btn btn-danger"
-                                onclick="return confirm('Apakah anda yakin akan menghapus penjualan ini?')">
-                                Hapus
-                            </button>
-                        </form>
-                        @endcan
-                    </td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="6">Data Tidak Ditemukan</td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
-
-    {{ $sales->links() }}
-    </tr>
-    </tbody>
-    </table>
+    </div>
 
 @endsection

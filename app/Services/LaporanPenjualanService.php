@@ -32,7 +32,7 @@ class LaporanPenjualanService
     {
         return DB::table('item_penjualan')
             ->join('penjualan', 'penjualan.id', '=', 'item_penjualan.penjualan_id')
-            ->join('produk', 'produk_id', '=', 'item_penjualan.produk_id')
+            ->join('produk', 'produk.id', '=', 'item_penjualan.produk_id')
             ->whereDate('penjualan.created_at', Carbon::today())
             ->where('penjualan.status', 'COMPLETED')
             ->groupBy('produk.id', 'produk.nama')
