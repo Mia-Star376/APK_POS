@@ -35,8 +35,8 @@
             <div class="rounded-3 overflow-hidden border">
                 <table class="table table-sm table-bordered mb-0 align-middle">
                     <thead>
-                        <tr class="text-muted">
-                            <th scope="col">#</th>
+                        <tr class="text-muted text-center">
+                            <th scope="col">No</th>
                             <th scope="col">User</th>
                             <th scope="col">Foto</th>
                             <th scope="col">Nama</th>

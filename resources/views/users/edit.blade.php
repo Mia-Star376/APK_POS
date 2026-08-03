@@ -6,8 +6,7 @@
 <h4>Edit User</h4>
 
 <form action="{{ route('admin.users.update', $user) }}" method="POST">
-    @csrf 
-    @method('PUT')
+    @csrf
 
     @include('users._form')
 </form>

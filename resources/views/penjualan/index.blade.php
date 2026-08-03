@@ -37,8 +37,8 @@
             <div class="rounded-3 overflow-hidden border">
                 <table class="table table-sm table-bordered mb-0 align-middle">
                     <thead>
-                        <tr class="text-muted">
-                            <th scope="col">#</th>
+                        <tr class="text-muted text-center">
+                            <th scope="col">No</th>
                             <th scope="col">Tanggal Transaksi</th>
                             <th scope="col">Kasir</th>
                             <th scope="col">Total Pembayaran</th>
@@ -59,13 +59,13 @@
                             <td class="text-center">
                                 <a href="" class="btn btn-sm" style="background-color: #ff8fb3; border-color: #ff8fb3; color: #fff;">Detail</a>
                                 @can('view', $sale)
-                                <a href="{{ route('penjualan.edit', $sale) }}" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="{{ route('penjualan.edit', $sale) }}" class="btn btn-sm" style="background-color: #db648a; border-color: #db648a; color: #fff;">Edit</a>
                                 @endcan
                                 @can('delete', $sale)
                                 <form action="{{ route('penjualan.destroy', $sale->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-sm btn-pink" onclick="return confirm('Apakah anda yakin akan menghapus penjualan ini?')">
+                                    <button class="btn btn-sm" style="background-color: #ff8fb3; border-color: #ff8fb3; color: #fff;" onclick="return confirm('Apakah anda yakin akan menghapus penjualan ini?')">
                                         Hapus
                                     </button>
                                 </form>

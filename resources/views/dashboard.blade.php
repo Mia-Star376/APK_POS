@@ -57,8 +57,8 @@
                     <div class="rounded-3 overflow-hidden border">
                     <table class="table table-sm table-bordered mb-0">
                         <thead>
-                            <tr class="text-muted">
-                                <th scope="col">#</th>
+                            <tr class="text-muted text-center">
+                                <th scope="col">No</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Stok</th>
                             </tr>
@@ -90,8 +90,8 @@
                     <div class="rounded-3 overflow-hidden border">
                     <table class="table table-sm table-bordered mb-0">
                         <thead>
-                            <tr class="text-muted">
-                                <th scope="col">#</th>
+                            <tr class="text-muted text-center">
+                                <th scope="col">No</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Stok</th>
                             </tr>
@@ -125,7 +125,7 @@
                     <div class="rounded-3 overflow-hidden border">
                     <table class="table table-sm table-bordered mb-0">
                         <thead>
-                            <tr class="text-muted">
+                            <tr class="text-muted text-center">
                                 <th scope="col">Nama</th>
                                 <th scope="col">Stok</th>
                                 <th scope="col">Unit Terjual</th>
