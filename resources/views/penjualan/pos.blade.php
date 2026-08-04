@@ -72,7 +72,7 @@
                     <div class="rounded-3 overflow-hidden border mb-3">
                         <table class="table table-sm table-bordered mb-0 align-middle">
                             <thead>
-                                <tr class="text-muted">
+                                <tr class="text-muted text-center">
                                     <th>Produk</th>
                                     <th>Harga</th>
                                     <th>Qty</th>
